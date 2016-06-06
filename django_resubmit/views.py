@@ -1,9 +1,10 @@
 # coding: utf-8
 from __future__ import absolute_import
 
-from django.core.servers.basehttp import FileWrapper
+import json
+
+from wsgiref.util import FileWrapper
 from django.http import HttpResponse, HttpResponseNotFound
-from django.utils import simplejson
 from django.views.generic.base import View
 
 from .core import get_temporary_storage, get_thumbnail, ThumbnailException
@@ -28,7 +29,7 @@ class Resubmit(View):
         if not self.request.FILES:
             return HttpResponse(status=200,
                     content_type='text/plain',
-                    content=simplejson.dumps({'error': 'file is required'}))
+                    content=json.dumps({'error': 'file is required'}))
 
         previous_key = self.request.GET.get('key', None)
         storage = get_temporary_storage()
@@ -49,5 +50,5 @@ class Resubmit(View):
 
         return HttpResponse(status=201,
                 content_type='text/plain; charset=utf-8',
-                content = simplejson.dumps(data))
+                content = json.dumps(data))
 
