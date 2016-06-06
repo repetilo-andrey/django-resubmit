@@ -7,7 +7,7 @@ try:
     from io import BytesIO
 except:
     from cStringIO import StringIO as BytesIO
-from django.core.cache import get_cache
+from django.core.cache import cache as get_cache
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
