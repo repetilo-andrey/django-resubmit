@@ -24,7 +24,7 @@ class CacheTemporaryStorage(object):
     def __init__(self, cache=None, prefix=None):
         if prefix is None:
             prefix = 'cachefile-'
-        self.cache = cache or get_cache(DJANGO_CACHE_NAME)
+        self.cache = cache or get_cache
         self.prefix = prefix
 
     def put_file(self, upload, key=None):
