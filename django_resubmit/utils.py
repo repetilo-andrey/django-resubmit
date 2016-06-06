@@ -16,7 +16,8 @@ def import_object(name):
 def import_configurable_object(name, verbose_name='object'):
     try:
         result = import_object(name)
-    except ImportError: 
+    except Exception, e: 
+        print '*----', e
         raise ImproperlyConfigured('Error importing %(object)s %(name)s' % {
             'object': verbose_name, 'name': name})
     return result
